@@ -18,7 +18,7 @@ use Magento\Store\Model\ScopeInterface;
  */
 class Config
 {
-    public const MODULE_VERSION = '1.0.0';
+    public const MODULE_VERSION = '1.0.1';
 
     public const XML_PATH_ENABLED      = 'angeo_webmcp/general/enabled';
     public const XML_PATH_OT_TOKEN     = 'angeo_webmcp/general/origin_trial_token';

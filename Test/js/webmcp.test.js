@@ -131,6 +131,7 @@ test('search_products maps GraphQL, caps page size, filters stock', async () => 
     const sent = JSON.parse(calls[0].init.body);
     assert.equal(sent.variables.n, 10);
     assert.equal(calls[0].init.headers.Store, 'default');
+    assert.equal(calls[0].init.headers['X-Angeo-Agent-Tool'], 'search_products');
 });
 
 test('search_products exposes variant options', async () => {
@@ -177,6 +178,7 @@ test('add_to_cart posts form key and options, reloads Luma mini cart', async () 
     assert.equal(body.get('qty'), '2');
     assert.deepEqual(JSON.parse(body.get('options')), { size: 'M' });
     assert.deepEqual(required, ['Magento_Customer/js/customer-data', 'cart']);
+    assert.equal(calls[0].init.headers['X-Angeo-Agent-Tool'], 'add_to_cart');
 });
 
 test('add_to_cart on Hyvä uses hyva.getFormKey and the reload event', async () => {

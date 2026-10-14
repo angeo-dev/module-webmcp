@@ -159,14 +159,17 @@
     function createClient(win, cfg) {
         var fetchImpl = win.fetch.bind(win);
 
-        function graphql(query, variables) {
+        // X-Angeo-Agent-Tool names the tool for angeo/module-agent-activity.
+        // Plain header, same-origin only; no personal data.
+        function graphql(query, variables, tool) {
             return fetchImpl(cfg.urls.graphql, {
                 method: 'POST',
                 credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Store': cfg.storeCode
+                    'Store': cfg.storeCode,
+                    'X-Angeo-Agent-Tool': tool || 'unknown'
                 },
                 body: JSON.stringify({ query: query, variables: variables })
             }).then(function (response) {
@@ -179,7 +182,7 @@
             });
         }
 
-        function postForm(url, fields) {
+        function postForm(url, fields, tool) {
             var body = new win.URLSearchParams();
             Object.keys(fields).forEach(function (key) {
                 body.append(key, fields[key]);
@@ -190,16 +193,17 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-Angeo-Agent-Tool': tool || 'unknown'
                 },
                 body: body.toString()
             }).then(readJson);
         }
 
-        function getJson(url) {
+        function getJson(url, tool) {
             return fetchImpl(url, {
                 credentials: 'same-origin',
-                headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+                headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest', 'X-Angeo-Agent-Tool': tool || 'unknown' }
             }).then(readJson);
         }
 
@@ -243,7 +247,7 @@
                     if (!query) {
                         return Promise.resolve(result({ ok: false, error: 'query_required' }));
                     }
-                    return client.graphql(SEARCH_QUERY, { q: query, n: size }).then(function (data) {
+                    return client.graphql(SEARCH_QUERY, { q: query, n: size }, 'search_products').then(function (data) {
                         var items = (data.products.items || []).map(function (item) { return toProduct(cfg, item); });
                         if (input.in_stock_only) {
                             items = items.filter(function (p) { return p.in_stock; });
@@ -270,7 +274,7 @@
                 annotations: { readOnlyHint: true, untrustedContentHint: true },
                 execute: function (input) {
                     var sku = String(input.sku || '').trim();
-                    return client.graphql(PRODUCT_QUERY, { sku: sku }).then(function (data) {
+                    return client.graphql(PRODUCT_QUERY, { sku: sku }, 'get_product').then(function (data) {
                         var item = (data.products.items || [])[0];
                         if (!item) {
                             return result({ ok: false, error: 'not_found', message: 'No product with SKU "' + sku + '".' });
@@ -311,7 +315,7 @@
                         qty: String(input.qty || 1),
                         options: JSON.stringify(input.options || {}),
                         form_key: getFormKey(win)
-                    }).then(function (response) {
+                    }, 'add_to_cart').then(function (response) {
                         if (response && response.ok) {
                             reloadCartSection(win);
                         }
@@ -327,7 +331,7 @@
                 inputSchema: { type: 'object', properties: {} },
                 annotations: { readOnlyHint: true },
                 execute: function () {
-                    return client.getJson(cfg.urls.cartView).then(result);
+                    return client.getJson(cfg.urls.cartView, 'get_cart').then(result);
                 }
             });
         }

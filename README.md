@@ -134,6 +134,9 @@ Varnish or LiteSpeed rules cache unknown paths, exclude `/webmcp/`.
 
 ## Works well with
 
+* [`angeo/module-agent-activity`](https://github.com/angeo-dev/module-agent-activity) —
+  counts WebMCP calls by tool, next to UCP and MCP traffic.
+
 * [`angeo/module-mcp-server`](https://github.com/angeo-dev/module-mcp-server) —
   server-side MCP for agents that connect directly (not in a browser).
 * [`angeo/module-ucp`](https://github.com/angeo-dev/module-ucp) — UCP profile

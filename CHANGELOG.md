@@ -6,6 +6,14 @@ project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.0.1] - 2026-10-14
+
+### Added
+
+- Every tool request sends an `X-Angeo-Agent-Tool` header with the tool name,
+  so [`angeo/module-agent-activity`](https://github.com/angeo-dev/module-agent-activity)
+  can count WebMCP calls by tool. Same-origin only; no personal data.
+
 ## [1.0.0] - 2026-10-14
 
 First release.

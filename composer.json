@@ -2,7 +2,7 @@
     "name": "angeo/module-webmcp",
     "description": "WebMCP for Magento 2 — registers structured tools (product search, product details, add to cart, view cart, go to checkout) in the shopper's browser, so in-browser AI agents act on your store through named functions instead of clicking through pages. Works with Luma and Hyvä.",
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "keywords": [
         "magento2",

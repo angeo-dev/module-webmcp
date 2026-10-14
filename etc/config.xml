@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <angeo_webmcp>
+            <general>
+                <!-- On by default, like the rest of the suite. The script is
+                     small and does nothing in browsers without WebMCP. -->
+                <enabled>1</enabled>
+                <origin_trial_token></origin_trial_token>
+            </general>
+            <tools>
+                <search_products>1</search_products>
+                <get_product>1</get_product>
+                <cart>1</cart>
+                <go_to_checkout>1</go_to_checkout>
+            </tools>
+            <limits>
+                <max_results>10</max_results>
+                <max_qty>100</max_qty>
+            </limits>
+        </angeo_webmcp>
+    </default>
+</config>

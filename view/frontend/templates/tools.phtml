@@ -1,0 +1,19 @@
+<?php
+/**
+ * @package   Angeo_WebMcp
+ * @copyright Copyright (c) Angeo
+ * @license   MIT
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+declare(strict_types=1);
+
+/** @var \Angeo\WebMcp\ViewModel\WebMcp $viewModel */
+$viewModel = $block->getData('view_model');
+if (!$viewModel->isActive()) {
+    return;
+}
+?>
+<script type="application/json" id="angeo-webmcp-config"><?= /* @noEscape */ $viewModel->getConfigJson() ?></script>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Angeo_WebMcp::js/webmcp.js')) ?>" defer></script>

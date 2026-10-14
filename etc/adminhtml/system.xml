@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="angeo" translate="label" sortOrder="400">
+            <label>Angeo</label>
+        </tab>
+        <section id="angeo_webmcp" translate="label" type="text" sortOrder="125"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>WebMCP</label>
+            <tab>angeo</tab>
+            <resource>Angeo_WebMcp::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable WebMCP Tools</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Registers store tools with <code>document.modelContext</code> on every storefront page. AI agents running in the shopper's browser (Chrome with WebMCP) can then search products and fill the shopper's own cart. The agent never pays: checkout stays with the shopper.]]></comment>
+                </field>
+                <field id="origin_trial_token" translate="label comment" type="textarea" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Chrome Origin Trial Token</label>
+                    <comment><![CDATA[Optional. WebMCP is in a Chrome origin trial (Chrome 149–156). Register your store domain on the Chrome Origin Trials site and paste the token here so real shoppers get the tools without a browser flag. The token is tied to one origin: use the store view scope for multi-domain setups.]]></comment>
+                </field>
+            </group>
+
+            <group id="tools" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Tools</label>
+                <field id="search_products" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>search_products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="get_product" translate="label" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>get_product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cart" translate="label comment" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>add_to_cart and get_cart</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Uses the shopper's own session cart. Requests carry the form key, like a normal add-to-cart button.]]></comment>
+                </field>
+                <field id="go_to_checkout" translate="label" type="select" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>go_to_checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="limits" translate="label" type="text" sortOrder="30"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Limits</label>
+                <field id="max_results" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Search Results</label>
+                    <validate>validate-digits validate-digits-range digits-range-1-50</validate>
+                </field>
+                <field id="max_qty" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Quantity per Add to Cart</label>
+                    <validate>validate-digits validate-digits-range digits-range-1-10000</validate>
+                    <comment><![CDATA[Stops an agent from adding absurd quantities by mistake.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

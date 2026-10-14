@@ -1,0 +1,19 @@
+<?php
+/**
+ * @package   Angeo_WebMcp
+ * @copyright Copyright (c) Angeo
+ * @license   MIT
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+declare(strict_types=1);
+
+/** @var \Angeo\WebMcp\ViewModel\WebMcp $viewModel */
+$viewModel = $block->getData('view_model');
+$token = $viewModel->getOriginTrialToken();
+if ($token === '') {
+    return;
+}
+?>
+<meta http-equiv="origin-trial" content="<?= $escaper->escapeHtmlAttr($token) ?>">

@@ -1,0 +1,64 @@
+{
+    "name": "angeo/module-webmcp",
+    "description": "WebMCP for Magento 2 — registers structured tools (product search, product details, add to cart, view cart, go to checkout) in the shopper's browser, so in-browser AI agents act on your store through named functions instead of clicking through pages. Works with Luma and Hyvä.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "keywords": [
+        "magento2",
+        "webmcp",
+        "mcp",
+        "model-context-protocol",
+        "ai-agents",
+        "agentic-commerce",
+        "aeo",
+        "chrome",
+        "hyva",
+        "adobe-commerce"
+    ],
+    "homepage": "https://angeo.dev",
+    "support": {
+        "issues": "https://github.com/angeo-dev/module-webmcp/issues",
+        "email": "support@angeo.dev"
+    },
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": ">=103.0.6 <104",
+        "magento/module-store": ">=101.1.6 <102",
+        "magento/module-catalog": ">=104.0.6 <105",
+        "magento/module-checkout": ">=100.4.6 <101",
+        "magento/module-quote": ">=101.2.6 <102",
+        "magento/module-configurable-product": ">=100.4.6 <101",
+        "magento/module-catalog-graph-ql": ">=100.4.6 <101"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "magento/magento-coding-standard": "^40.0 || ^41.0",
+        "phpstan/phpstan": "^2.0",
+        "bitexpert/phpstan-magento": "^0.43"
+    },
+    "suggest": {
+        "angeo/module-mcp-server": "Server-side MCP endpoint for agents that connect directly, not through the shopper's browser",
+        "angeo/module-ucp": "Publish a /.well-known/ucp profile for Google AI Mode and Gemini"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Angeo\\WebMcp\\": ""
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "magento/composer-dependency-version-audit-plugin": false,
+            "mage-os/composer-dependency-version-audit-plugin": false,
+            "magento/magento-composer-installer": false,
+            "magento/inventory-composer-installer": false,
+            "laminas/laminas-dependency-plugin": false,
+            "php-http/discovery": false
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+    head.additional and before.body.end exist in Luma and in Hyvä, so one
+    layout file serves both themes.
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="angeo.webmcp.origin_trial"
+                   template="Angeo_WebMcp::origin-trial.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Angeo\WebMcp\ViewModel\WebMcp</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="angeo.webmcp.tools"
+                   template="Angeo_WebMcp::tools.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Angeo\WebMcp\ViewModel\WebMcp</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

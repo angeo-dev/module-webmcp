@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+    <!-- The script also reloads the cart section itself (fetch() does not
+         trigger Luma's ajaxComplete hook). This entry keeps the declaration
+         correct for any jQuery caller. -->
+    <action name="webmcp/cart/add">
+        <section name="cart"/>
+    </action>
+</config>
